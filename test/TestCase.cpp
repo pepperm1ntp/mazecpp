@@ -1,15 +1,16 @@
-// 010-TestCase.cpp
-
-// Let Catch provide main():
 #define CATCH_CONFIG_MAIN
 
 #include "catch/catch.hpp"
-#include "../src/my_class.cpp"
 
-TEST_CASE("Test placeholder. PASS.")
+TEST_CASE("Test parse row of CSV")
 {
-	REQUIRE (MyClass::foo() == 12);
 }
 
+TEST_CASE("Test exit maze")
+{
+}
+
+// Add more test cases as needed
+
 // Compile & run:
-// g++ -std=c++17 -Wall -Itest/catch/catch.hpp -o test/TestCase test/TestCase.cpp && test/TestCase --success
+// make test
