@@ -260,7 +260,7 @@ Your application must function as described below:
 
 - Projects will be graded on whether they correctly solve the problem, and whether they adhere to good programming practices.
 - Projects must be received by the time specified on the due date. Projects received after that time will get a grade of zero.
-- Do not change the testMaze.txt file! Change maze.txt
+- Do not change the TestCase.cpp, testMaze.txt, or keyboard_input.txt files unless told to! The results you get will be pointless as they will not align with our grading! You can change maze.txt all you want.
 - Please review the academic honesty policy.
   - Note that viewing another student's solution, whether in whole or in part, is considered academic dishonesty.
   - Also note that submitting code obtained through the Internet or other sources, whether in whole or in part, is considered academic dishonesty. \* All programs submitted will be reviewed for evidence of academic dishonesty, and all violations will be handled accordingly.
