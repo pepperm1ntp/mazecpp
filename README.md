@@ -194,10 +194,10 @@ In addition to the parameterized constructor, this class should have the followi
 	* When a player enters a room, they should receive all items in that room. AcquireNextItem returns one item at a time and removes it from the Room.
    
 ### The Maze Class
-![UML of Maze class](http://www.plantuml.com/plantuml/png/LOx1QiCm38RlUWeTdMH-0Py2WUsoZP4ty68j6Enus4fBM_hkbKDAwCcI_i_IrnUscTSOO0gs5FooLy8Rw9nIB0P7UTgsjcVf_CAWfnJs4dGK-jq7CbZO6UF_2cUoKPBFP5tTfHg3f-GTw44IfXyvOcTI6o-qNsRaopy9jaSjG2S_Nv7deGQw3-9gfSG0HUiDQo5I3Uww6_Aznb_AesYh6bJTOpoaS8plqDFYrXWU)
+![UML of Maze class](http://www.plantuml.com/plantuml/png/LOx1JiCm38RlVWeVqvQyG4wLAi454EeRXCPKaP869Iu8fktPvtITgfrY-_zYVtrXctcD0QPWIy4t-qzu0frJYiNWA4_RrlPNEhymw2c5lGGTXNxsWGmMTiRuhyAPR9JaDLbNTwd6u4_o3lGW2TE77B4pgOqNsYypyjyt2RP7BK0dFn-H-w46kXVYQgN404Nh2MiXKWtkkXloliPFogDegnfKtMCyf72CeRlSHE4CFIrkZU4A)
 
 This class holds the information for the Maze. The Maze is a two-dimensional array of Rooms represented by a Room**. You will need to read the information for the Maze from an input file, assemble the information into Room objects, and add them to the array.    
-In addition to the parameterized constructor, this class should have the following methods:
+In addition to the parameterized constructor and a destructor, this class should have the following methods:
 * `LoadMaze ()`
 	* This private helper function is used to read the file and create the two-dimensional array of Room objects.
 * `CreatePassage()`
