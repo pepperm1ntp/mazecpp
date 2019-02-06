@@ -149,6 +149,10 @@ Note that the list of items in the room is not comma-separated.
 
 ### Sample run of program
 
+Takes a second or so to start. You can ignore the cd command.
+
+![Sample execution of program](demo.gif)
+
 ## Code Organization:
 
 You will need to make sure that your code meets the following specifications.
@@ -256,6 +260,7 @@ Your application must function as described below:
 
 - Projects will be graded on whether they correctly solve the problem, and whether they adhere to good programming practices.
 - Projects must be received by the time specified on the due date. Projects received after that time will get a grade of zero.
+- Do not change the testMaze.txt file! Change maze.txt
 - Please review the academic honesty policy.
   - Note that viewing another student's solution, whether in whole or in part, is considered academic dishonesty.
   - Also note that submitting code obtained through the Internet or other sources, whether in whole or in part, is considered academic dishonesty. \* All programs submitted will be reviewed for evidence of academic dishonesty, and all violations will be handled accordingly.
