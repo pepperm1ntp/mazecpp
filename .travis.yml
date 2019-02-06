@@ -17,4 +17,4 @@ matrix:
 before_install:
   - eval "${MATRIX_EVAL}"
 
-script: make clean test
+script: make clean test main && cat keyboard_input.txt | ./main
