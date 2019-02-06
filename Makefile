@@ -4,17 +4,21 @@ CC = g++
 # compiler flags:
 #  -g    adds debugging information to the executable file
 #  -Wall turns on most, but not all, compiler warnings
-CFLAGS  = -g -Wall
+CFLAGS  = -std=c++11 -g -Wall
 
-SRC_FILES := $(shell find . -path ./test -prune -o -name "*.cpp" -print)
+OBJECTS = room.o passage.o player.o maze.o game.o
+HEADERS := $(shell find . -path ./test -prune -o -name "*.hpp" -print)
 
-# the build target executable:
-TARGET = main
+main: main.o $(OBJECTS)
+	$(CC) $(CFLAGS) -o $@ $^
 
-all: $(TARGET)
+$(OBJECTS): $(HEADERS)
 
-$(TARGET): $(TARGET).cpp
-	$(CC) $(CFLAGS) -o $(TARGET) $(TARGET).cpp
+testBuild: $(OBJECTS)
+	$(CC) $(CFLAGS) -Itest/catch/catch.hpp -o test/TestCase $(OBJECTS) test/TestCase.cpp
+
+test: clean testBuild
+	test/TestCase --success
 
 clean:
-	$(RM) $(TARGET)
+	$(RM) *.o *.gch core main test/TestCase
