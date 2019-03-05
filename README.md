@@ -1,4 +1,4 @@
-# COP 3530 - Data Structures and Algorithms I
+# Intro to C++
 
 # Due: 
 
@@ -162,101 +162,7 @@ Note that there is some room for interpretation, but a general code outline is g
 The main file shall create a Game instance and utilize its methods to implement the game.
 Additionally, the main file will handle user selections and input. 
 
-### The Passage Class
-![UML of Passage class](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuKhEIImkLWW04edfgGhLNBgPnVu5gNbM2adv-JbSkjcfbLOAnIKfLbR59KMPUUbSsb2b6fe89aYf0aGVTb4TP2CKW6PgSd5fUuAbD3GLe7Pf1wKMbcOMfHPxfrOYYRgdba0bKg0Io8O1pO6RKfQVcS9Lo-MGcfS2z1a0)
 
-This class is responsible for storing information on a passage in the maze. A passage can either be a solid wall, an open passageway, or a door. The first parameterized constructor can be used to create a passage that is not a door. The second takes in an additional key parameter for a door.
-In addition to the parameterized constructors, this class should have the following methods:
-* `IsOpen ()`
-	* Returns a boolean value to state whether the passage is currently open.
-* `RequiresKey ()`
-	* Returns a boolean (true or false) if the passage requires a key to open.
-	* This function allows you to determine whether the passage is a door.
-* `GetRequiredKey ()`
-	* Returns an std::string of the key needed to open the door. For instance a "red_key" is needed to open the door that is South of The Start
-* `Open ()`
-	* Opens a closed door. You should check that the player has the required key before opening the door.
-   
-
-### The Room Class
-![UML of Room class](http://www.plantuml.com/plantuml/png/VP71YeCm48RlynGvwhg-W2oBUrYMlKXf3pq7CzY0CJGpiONITs_IYYXLJmxpVn_EhoMnTEnD2tKhYSJUMYDka7VIO268LL4GEzqra6j6GyEknvgj-vhatn0aw_YqaqIo2V8mV42EadXXJTOluXTSmY6BjoNfy9oyMiHZFqToUmh-7t8LZ2GLyuRY5KrAH6Gqd-blgB8Q7gpVK8-ueaBsezG_uxnK_DmHwwrMWQZFNZkiyCgHVBlz3YLsAlp71m00)
-
-This class holds information for a Room in the maze. Each Room object is composed of four passages pointers (one for each direction), a name, and the list of items in that Room. 
-In addition to the parameterized constructor, this class should have the following methods:
-* `GetName ()`
-	* Returns the name of the Room.
-* `GetNorthPassage ()`, `GetEastPassage ()`, `GetSouthPassage ()`, `GetWestPassage ()`
-	* Each of these methods returns a pointer to the corresponding Passage.
-   * This allows for calls such as "someRoom->GetNorthPassage()->Open()"
-* `AddItem (std::string item)`
-	* Adds an item to the items vector of the Room object.
-* `AcquireNextItem ()`
-	* When a player enters a room, they should receive all items in that room. AcquireNextItem returns one item at a time and removes it from the Room.
-   
-### The Maze Class
-![UML of Maze class](http://www.plantuml.com/plantuml/png/LOx1JiCm38RlVWeVqvQyG4wLAi454EeRXCPKaP869Iu8fktPvtITgfrY-_zYVtrXctcD0QPWIy4t-qzu0frJYiNWA4_RrlPNEhymw2c5lGGTXNxsWGmMTiRuhyAPR9JaDLbNTwd6u4_o3lGW2TE77B4pgOqNsYypyjyt2RP7BK0dFn-H-w46kXVYQgN404Nh2MiXKWtkkXloliPFogDegnfKtMCyf72CeRlSHE4CFIrkZU4A)
-
-This class holds the information for the Maze. The Maze is a two-dimensional array of Rooms represented by a Room**. You will need to read the information for the Maze from an input file, assemble the information into Room objects, and add them to the array.    
-In addition to the parameterized constructor and a destructor, this class should have the following methods:
-* `LoadMaze ()`
-	* This private helper function is used to read the file and create the two-dimensional array of Room objects.
-* `CreatePassage()`
-	* This private helper function takes in a string of '-', '+', or an item need to open a door, and returns a pointer to an appropriate Passage object.
-* `GetRoom (int row, int col)`
-	* Takes in a position in terms of a row and col and returns a pointer to the Room object at that location in the Maze.
-* `GetNumberRows ()`, `GetNumberCols ()`
-   * Simple getter methods that return the number of rows and columns in the maze.
-   
-### The Player Class
-![UML of Player class](http://www.plantuml.com/plantuml/png/VP31IWGn44Jl_HKvPXdd1mQHbJte7eH5yGDYqaWWIKEwDuk8_svd8pDUzFOggLGLsREuAkUSm2V7R4x9VM0rdp1NkYmc5e7PK_gXJ0rvCCnHCAjW2SlIq0lLsokpr5ZUxm2c4MPtYWyeptInEpDUTtsWjEaNb1Dnb4Z5we7HzXlJGSkxgL4C6dCVmb5hxQyYqtUibkdHyP-EDw84qolZlnbZxHCrFD2voBRnM7p5ZELwntRrVy4UIz0__0O0)
-
-This class holds the information for the Player. As the player moves through the maze, you must keep track of the player's location, any items that they pick up along the way, and the number of moves that they have made. This class should have the following methods:
-* `GetRow ()`, `GetCol ()`
-	* Simple getter methods that return the player's current row and column in the maze.
-* `SetPosition(int row, int col)`
-	* A setter method that updates the player's row and column.
-* `AddItem (std::string item)`
-	* Add an item to the current collection of items that the player has.
-* `HasItem (std::string item)`
-	* Returns a boolean value that says whether the player has obtained a given item. Should return true if the item is in the player's collection of obtained items and false otherwise. 
-* `UseItem (std::string item)`
-   * Items are consumables, which means that when they are used, they should be removed completely from the player. 
-* `GetMoveCount ()`
-   * Returns the number of moves the player has made in the maze.
-* `IncrementMoves ()`
-   * Every time the player makes a move, this function should be used to increase the number of moves the player has made by 1.
-   
-### The Game Class
-![UML of Game class](http://www.plantuml.com/plantuml/png/XOxFQiCm38VlVWeTqsPv0JD6OTd2O1rbXzqzMnI3RHLB2Vl3tdsnITkmoowo-IJzzErOJ9On1cM3OOR1H8HlrKNpXHhsSzsgxXJC9sODX_hEm8uvOv9NegYXr2jx4eoiWSLfFQ4LohVrpv9zEjufrGqe1yDiZjWZs-nFuYar2zfkGCDgGQcsA3NLvEPii9bnxxburNjDsPh8kmjUujQT0UN-wlrIKlyUQv-9QdUrzcQ2TxtFQAldQXpScPRfTwAWsZrD-F_m4ltmuUMHnkIQIy2Fsc5oOmo_)
-
-This class holds the primary logic for the game. It takes in a Maze and a Player objects and allows the player to manipulate the Maze according to the rules of the game. In addition to a parameterized constructor, the class should also have the following methods:
-* `GetPassageDescription (Passage* passage)`
-	* This helper function returns a string that describes the given Passage. Descriptions include whether it is a solid wall, open passage, or doorway requiring a key. Look at the example console output in this project description to see the types of information that should be returned.
-* `DisplayItems ()`
-	* Prints all the current items in the room according to this project description.
-* `DisplayPassages ()`
-	* Prints all details about the passages connected to this room according to the project description.
-* `GetCurrentRoomName ()`
-	* Returns the name of the room that the player is currently in.
-* `LootRoom ()`
-	* When the player enters a new room, they should loot it. This means removing all items from the Room object and adding them to the Player object. 
-* `ValidDirection (std::string direction)`
-   * Returns a boolean for whether the player can travel in a specific direction of 'N', 'E', 'S', or 'W'. 
-* `MoveDirection (std::string direction)`
-   * Moves a player in a legal direction. This should update the player's position and also the current Room.
-* `ExitFound ()`
-   * Returns a boolean for whether the player has reached a room with an exit.   
-
-## Additional Requirements:
-
-Your application must function as described below:
-
-1. Your program must adhere to the class diagrams provided in this description, including the use of a two-dimensional array to store the rooms of the maze.
-2. You program must adhere to using the given interface as specified and the given file format.
-3. Any passageway that allows an exit beyond the bounds of the array is considered an exit. Note that you do not want to actually move the player outside the bounds of your array as that may cause your program to crash before it properly exits.
-4. When using an item to pass though a door, the two rooms adjacent to the doorway should both be updated to know that the doorway is now open. Thus, a user can go back and forth through a red_key doorway as many times as they want once they have used the red_key on that door.
-
-## Important Notes:
 
 - Projects will be graded on whether they correctly solve the problem, and whether they adhere to good programming practices.
 - Projects must be received by the time specified on the due date. Projects received after that time will get a grade of zero.
